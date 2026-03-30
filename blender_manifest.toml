@@ -1,0 +1,22 @@
+schema_version = "1.0.0"
+
+id = "three_d_printing_tools"
+version = "0.1.0"
+name = "3D Printing Tools"
+tagline = "Utilities to prepare Blender meshes and scenes for 3D printing"
+maintainer = "Filipe Lopes <contato@filipelopes.me>"
+type = "add-on"
+website = "https://github.com/filiperochalopes/blender-for-3d-printing"
+
+blender_version_min = "4.2.0"
+
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "/.git/",
+  ".*",
+]
