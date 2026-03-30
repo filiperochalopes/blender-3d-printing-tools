@@ -10,11 +10,13 @@ Construir um add-on que concentre verificações e correções comuns antes da e
 
 ## Estado Atual
 
-Hoje o repositório contém um utilitário isolado:
+O repositório já foi organizado como base de add-on Blender:
 
-- `triangulate_faces_with_more_than_four_vertices.py`: triangula faces com mais de quatro vértices nos objetos de malha selecionados
+- `__init__.py`: registro do add-on, operador e painel lateral
+- `utils/`: ponto de organização para utilitários reutilizáveis
+- `triangulate_faces_with_more_than_four_vertices.py`: lógica do primeiro utilitário, reaproveitada pelo botão do painel
 
-Esse script serve como primeiro bloco funcional para a futura transformação em add-on instalável.
+O primeiro botão do add-on é `Remove irregular faces`, que triangula faces com mais de quatro vértices nos objetos de malha selecionados.
 
 ## Escopo Inicial do Add-on
 
@@ -26,23 +28,30 @@ As primeiras capacidades previstas para `3D Printing Tools` são:
 - inspeção de normais e geometria não manifold
 - ações rápidas de preparação antes da exportação
 
-## Estrutura Planejada
+## Estrutura Atual
 
-Uma estrutura inicial recomendada para o projeto é:
+A estrutura inicial do projeto ficou assim:
 
-- `__init__.py` para registro do add-on
-- `operators/` para operadores Blender
-- `panels/` para interface no `View3D`
+- `__init__.py` para registro do add-on, operador e painel
 - `utils/` para lógica reutilizável
+- `triangulate_faces_with_more_than_four_vertices.py` com o primeiro fluxo funcional
 - `blender_manifest.toml` para empacotamento como extensão
 
 ## Próximos Passos
 
-1. transformar o script de triangulação em operador Blender
-2. criar `__init__.py` com `bl_info`, registro e painel inicial
-3. adicionar interface no painel lateral com ações de preparação
-4. organizar o código em módulos reutilizáveis
-5. validar e empacotar a extensão com o manifesto
+1. adicionar novos operadores de inspeção de malha
+2. expandir o painel lateral com mais ferramentas de preparação
+3. separar utilitários por domínio conforme o add-on crescer
+4. validar e empacotar a extensão com o manifesto
+
+## Como Usar
+
+1. instale ou carregue o add-on no Blender
+2. abra o `View3D`
+3. vá à barra lateral direita
+4. abra a aba `3D Printing Tools`
+5. selecione um ou mais objetos do tipo `MESH`
+6. clique em `Remove irregular faces`
 
 ## Build
 
