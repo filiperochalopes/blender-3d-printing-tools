@@ -18,6 +18,8 @@ O repositório já foi organizado como base de add-on Blender:
 
 O primeiro botao do add-on e `Solve irregular faces`, que triangula faces com mais de quatro vertices nos objetos de malha selecionados.
 
+Logo abaixo, o botao `Select Non Manifold edges` funciona como atalho para entrar em `Edit Mode`, ativar selecao de arestas e executar a selecao de elementos non-manifold.
+
 ## Escopo Inicial do Add-on
 
 As primeiras capacidades previstas para `3D Printing Tools` são:
@@ -54,6 +56,7 @@ A estrutura inicial do projeto ficou assim:
 4. abra a aba `3D Printing Tools`
 5. selecione um ou mais objetos do tipo `MESH`
 6. clique em `Solve irregular faces`
+7. clique em `Select Non Manifold edges` para inspecionar arestas problematicas no objeto ativo
 
 Para Boolean:
 

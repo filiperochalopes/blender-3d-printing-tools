@@ -42,6 +42,27 @@ class OBJECT_OT_remove_irregular_faces(bpy.types.Operator):
         return {"FINISHED"}
 
 
+class OBJECT_OT_select_non_manifold_edges(bpy.types.Operator):
+    bl_idname = "object.select_non_manifold_edges"
+    bl_label = "Select Non Manifold edges"
+    bl_description = "Enter Edit Mode, switch to Edge Select, and select non-manifold edges"
+    bl_options = {"REGISTER", "UNDO"}
+
+    @classmethod
+    def poll(cls, context):
+        return utils.can_select_non_manifold_edges(context)
+
+    def execute(self, context):
+        result = utils.select_non_manifold_edges(context)
+
+        if not result["success"]:
+            self.report({"WARNING"}, "Select one active mesh object")
+            return {"CANCELLED"}
+
+        self.report({"INFO"}, f"Selected non-manifold edges on {result['active_object']}")
+        return {"FINISHED"}
+
+
 class OBJECT_OT_add_boolean_modifiers(bpy.types.Operator):
     bl_idname = "object.add_boolean_modifiers"
     bl_label = "Add boolean modifiers"
@@ -117,6 +138,7 @@ class VIEW3D_PT_three_d_printing_tools(bpy.types.Panel):
     def draw(self, context):
         layout = self.layout
         layout.operator("object.remove_irregular_faces", text="Solve irregular faces")
+        layout.operator("object.select_non_manifold_edges", text="Select Non Manifold edges")
         row = layout.row(align=True)
 
         subtract = row.operator(
@@ -145,6 +167,7 @@ class VIEW3D_PT_three_d_printing_tools(bpy.types.Panel):
 
 classes = (
     OBJECT_OT_remove_irregular_faces,
+    OBJECT_OT_select_non_manifold_edges,
     OBJECT_OT_add_boolean_modifiers,
     OBJECT_OT_apply_modifiers,
     VIEW3D_PT_three_d_printing_tools,
