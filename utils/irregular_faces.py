@@ -24,7 +24,7 @@ def _triangulate_irregular_faces(obj):
         bm.free()
 
 
-def remove_irregular_faces(context=None):
+def solve_irregular_faces(context=None):
     context = context or bpy.context
     selected_objects = _selected_mesh_objects(context)
 
@@ -55,8 +55,12 @@ def remove_irregular_faces(context=None):
     }
 
 
+def remove_irregular_faces(context=None):
+    return solve_irregular_faces(context)
+
+
 def triangular_selecao(context=None):
-    return remove_irregular_faces(context)
+    return solve_irregular_faces(context)
 
 
 if __name__ == "__main__":
