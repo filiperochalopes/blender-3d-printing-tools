@@ -42,6 +42,18 @@ class OBJECT_OT_remove_irregular_faces(bpy.types.Operator):
         return {"FINISHED"}
 
 
+class OBJECT_OT_configure_environment(bpy.types.Operator):
+    bl_idname = "object.configure_environment"
+    bl_label = "Configure environment"
+    bl_description = "Configure units, viewport and layout for the 3D printing workflow"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):
+        utils.configure_environment(context)
+        self.report({"INFO"}, "Environment configured")
+        return {"FINISHED"}
+
+
 class OBJECT_OT_select_non_manifold_edges(bpy.types.Operator):
     bl_idname = "object.select_non_manifold_edges"
     bl_label = "Select Non Manifold edges"
@@ -137,6 +149,7 @@ class VIEW3D_PT_three_d_printing_tools(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        layout.operator("object.configure_environment", text="Configure environment")
         layout.operator("object.remove_irregular_faces", text="Solve irregular faces")
         layout.operator("object.select_non_manifold_edges", text="Select Non Manifold edges")
         row = layout.row(align=True)
@@ -166,6 +179,7 @@ class VIEW3D_PT_three_d_printing_tools(bpy.types.Panel):
 
 
 classes = (
+    OBJECT_OT_configure_environment,
     OBJECT_OT_remove_irregular_faces,
     OBJECT_OT_select_non_manifold_edges,
     OBJECT_OT_add_boolean_modifiers,

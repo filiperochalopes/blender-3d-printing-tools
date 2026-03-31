@@ -15,8 +15,11 @@ O repositório já foi organizado como base de add-on Blender:
 - `__init__.py`: registro do add-on, operador e painel lateral
 - `utils/`: ponto de organização para utilitários reutilizáveis
 - `utils/irregular_faces.py`: logica do primeiro utilitario, reaproveitada pelo botao do painel
+- `utils/environment.py`: configuracao de ambiente inspirada no projeto de referencia
 
-O primeiro botao do add-on e `Solve irregular faces`, que triangula faces com mais de quatro vertices nos objetos de malha selecionados.
+O primeiro botao do add-on e `Configure environment`, que replica a configuracao do projeto de referencia para unidades, viewport, layout e limpeza da cena.
+
+Logo abaixo, o botao `Solve irregular faces` triangula faces com mais de quatro vertices nos objetos de malha selecionados.
 
 Logo abaixo, o botao `Select Non Manifold edges` funciona como atalho para entrar em `Edit Mode`, ativar selecao de arestas e executar a selecao de elementos non-manifold.
 
@@ -38,6 +41,7 @@ A estrutura inicial do projeto ficou assim:
 
 - `__init__.py` para registro do add-on, operador e painel
 - `utils/` para lógica reutilizável
+- `utils/environment.py` com a configuracao de ambiente
 - `utils/irregular_faces.py` com o primeiro fluxo funcional
 - `blender_manifest.toml` para empacotamento como extensão
 
@@ -54,9 +58,10 @@ A estrutura inicial do projeto ficou assim:
 2. abra o `View3D`
 3. vá à barra lateral direita
 4. abra a aba `3D Printing Tools`
-5. selecione um ou mais objetos do tipo `MESH`
-6. clique em `Solve irregular faces`
-7. clique em `Select Non Manifold edges` para inspecionar arestas problematicas no objeto ativo
+5. clique em `Configure environment`
+6. selecione um ou mais objetos do tipo `MESH`
+7. clique em `Solve irregular faces`
+8. clique em `Select Non Manifold edges` para inspecionar arestas problematicas no objeto ativo
 
 Para Boolean:
 
